@@ -13,6 +13,11 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
 
+        password:{
+            type: String,
+            required: true
+        },
+
         age:{
             type: Number,
             required: true,
@@ -28,4 +33,4 @@ const UserSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", UserSchema)
 
-module.exports = user;
+module.exports = User;
