@@ -4,6 +4,7 @@ const User = require("../Model/UserSchema");
 
 const router = express.Router();
 
+// register
 router.post("/register", async (req, res) => {
     try {
         const { username, email, age, password, confirmPassword } = req.body;
@@ -32,5 +33,24 @@ router.post("/register", async (req, res) => {
         res.status(500).json({ message: e })
     }
 });
+
+// login
+router.post('/login', async(req, res)=>{
+    try{
+    const {email, password} = req.body
+    console.log(req.body)
+    const exist = await User.findOne({email: email})
+    const password_check = await helper.check_password(password, exist.password)
+    if (exist && password_check){
+        res.status(200).send('Logged in Successfully')
+    }
+    else{
+        res.status(401).send('Login Failed. Invalid Credentials')
+    }
+    }
+    catch (err){
+        console.log(err)
+    }
+})
 
 module.exports = router;
