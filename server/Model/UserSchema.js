@@ -24,6 +24,11 @@ const UserSchema = new mongoose.Schema(
             min: 0
         },
 
+        blogs:{
+            type: Array,
+            default: []
+        },
+
         created_at:{
             type: Date,
             default: Date.now

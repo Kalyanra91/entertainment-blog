@@ -38,7 +38,6 @@ router.post("/register", async (req, res) => {
 router.post('/login', async(req, res)=>{
     try{
     const {email, password} = req.body
-    console.log(req.body)
     const exist = await User.findOne({email: email})
     const password_check = await helper.check_password(password, exist.password)
     if (exist && password_check){
