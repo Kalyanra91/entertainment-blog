@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const helper = require("../Helper/Helper");
 
 const UserSchema = new mongoose.Schema(
     {
@@ -30,8 +31,8 @@ const UserSchema = new mongoose.Schema(
         },
 
         created_at:{
-            type: Date,
-            default: Date.now
+            type: String,
+            default: helper.formatDate(new Date())
         }
     }
 )
