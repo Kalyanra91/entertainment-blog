@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/profile/:username", async (req, res) => {
     try {
         const { username } = req.params
-        const user = await User.findOne({ username: username })
+        const user = await User.findOne({ username: username }).select("-password -__v -_id -age")
         if (user) {
             return res.status(200).send(user)
         }
