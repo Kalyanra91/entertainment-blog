@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema(
     {
         username:{
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
 
         email:{
@@ -28,6 +29,11 @@ const UserSchema = new mongoose.Schema(
         blogs:{
             type: Array,
             default: []
+        },
+
+        image:{
+            type: String,
+            default: "./static/profiles/default.png"
         },
 
         created_at:{

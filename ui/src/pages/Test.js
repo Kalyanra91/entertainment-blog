@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UserProfileSearch = () => {
+const Test = () => {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ const UserProfileSearch = () => {
     setUserData(null);
 
     try {
-      const response = await fetch(`/profile/${username}`);
+      const response = await fetch(`http://localhost:3001/profile/${username}`);
 
       if (!response.ok) {
         throw new Error(
@@ -28,6 +28,7 @@ const UserProfileSearch = () => {
       }
 
       const data = await response.json();
+      console.log(data);
       setUserData(data);
     } catch (err) {
       setError(err.message);
@@ -61,10 +62,10 @@ const UserProfileSearch = () => {
           <p>Username: {userData.username}</p>
           <p>Email: {userData.email}</p>
           <p>Age: {userData.age}</p>
-          {userData.imageURL && (
+          {userData.image && (
             <div>
               <img
-                src={userData.imageURL}
+                src={userData.image}
                 alt={`${userData.username}'s profile`}
               />
             </div>
@@ -75,4 +76,4 @@ const UserProfileSearch = () => {
   );
 };
 
-export default UserProfileSearch;
+export default Test;

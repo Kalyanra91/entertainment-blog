@@ -7,13 +7,10 @@ const router = express.Router();
 // register
 router.post("/register", async (req, res) => {
     try {
-        const { username, email, age, password, confirmPassword } = req.body;
+        const { username, email, age, password } = req.body;
         const dataExist = await User.findOne({ email: email });
         if (dataExist) {
             return res.status(409).send("User Already Exist");
-        }
-        if (confirmPassword !== password) {
-            return res.status(401).send("Passwords donot match");
         }
         const hashed_password = await helper.hashPassword(password);
         const newUser = new User({
