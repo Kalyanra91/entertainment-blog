@@ -11,6 +11,7 @@
 .register-container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
@@ -29,7 +30,7 @@
 .logo {
     display: block;
     margin: 0 auto;
-    width: 200px;
+    width: 300px;
 }
 /* Title Styles */
 .login-title,

@@ -99,8 +99,8 @@ const Register = () => {
 
   return (
     <div className="register-container">
+      <img src={logo} alt="Logo" className="logo" />{" "}
       <div className="register-card">
-        <img src={logo} alt="Logo" className="logo" />{" "}
         <h2 className="register-title">Create your account</h2>
         <form onSubmit={handleSubmit} className="register-form">
           {errors.submit && <div className="error-alert">{errors.submit}</div>}
