@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
+import "../../styles/global.css";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
+import logo from "../../assets/logo.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -86,7 +87,6 @@ const Register = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
       navigate("/login");
     } catch (error) {
       setErrors({
@@ -100,8 +100,8 @@ const Register = () => {
   return (
     <div className="register-container">
       <div className="register-card">
+        <img src={logo} alt="Logo" className="logo" />{" "}
         <h2 className="register-title">Create your account</h2>
-
         <form onSubmit={handleSubmit} className="register-form">
           {errors.submit && <div className="error-alert">{errors.submit}</div>}
 

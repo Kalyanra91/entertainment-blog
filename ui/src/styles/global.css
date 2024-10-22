@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -5,6 +6,8 @@
   box-sizing: border-box;
 }
 
+/* Container Styles */
+.login-container,
 .register-container {
   min-height: 100vh;
   display: flex;
@@ -14,6 +17,8 @@
   background-color: #ffffff;
 }
 
+/* Card Styles */
+.login-card,
 .register-card {
   width: 100%;
   max-width: 400px;
@@ -21,15 +26,24 @@
   background: #ffffff;
 }
 
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
+/* Title Styles */
+.login-title,
 .register-title {
   font-family: "Playfair Display", serif;
-  font-size: 28px;
   text-align: center;
   font-weight: 700;
   color: #000000;
   margin-bottom: 32px;
+  font-size: 36px;
 }
 
+/* Form Styles */
+.login-form,
 .register-form {
   display: flex;
   flex-direction: column;
@@ -42,41 +56,14 @@
   gap: 6px;
 }
 
-.role-buttons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.role-button {
-  flex: 1;
-  padding: 12px 24px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-}
-
-.role-button.active {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
-}
-
+/* Input Styles */
 input,
 select {
-  padding: 12px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 7px;
   border: none;
   background: #f3f4f6;
-  font-size: 14px;
+  font-size: 13px;
   width: 100%;
   transition: all 0.2s ease;
 }
@@ -92,6 +79,7 @@ input.error {
   background: #fff5f5;
 }
 
+/* Error Styles */
 .error-message {
   color: #ff4444;
   font-size: 12px;
@@ -108,19 +96,19 @@ input.error {
   font-size: 14px;
 }
 
+/* Button Styles */
 .submit-button {
-  background-color: black;  
+  background-color: black;
   align-items: center;
   color: white;
   border: none;
   border-radius: 60px;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   margin-top: 8px;
   width: 100%;
+  padding: 10px;
 }
 
 .submit-button:hover {
@@ -132,11 +120,22 @@ input.error {
   cursor: not-allowed;
 }
 
+.register-link,
 .login-link {
   text-align: center;
-  font-size: 14px;
   color: #6b7280;
   margin-top: 16px;
+}
+
+.register-link,
+.login-link {
+  font-size: 14px;
+}
+
+.forgot-password {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
 }
 
 .link-button {
@@ -149,29 +148,14 @@ input.error {
   padding: 0;
 }
 
-.link-button:hover {
-  text-decoration: underline;
-}
-
-.privacy-policy {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #6b7280;
-  margin-top: 16px;
-}
-
-.privacy-policy input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-}
-
+/* Responsive Styles */
 @media (max-width: 480px) {
+  .login-card,
   .register-card {
     padding: 24px 16px;
   }
 
+  .login-title,
   .register-title {
     font-size: 24px;
   }
