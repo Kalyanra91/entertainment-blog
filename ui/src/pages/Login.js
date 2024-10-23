@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/global.css";
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
+import "../styles/global.css";
+import CustomInput from "../components/CustomInput";
+import CustomButton from "../components/CustomButton";
+import logo from "../assets/logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,8 +54,7 @@ const Login = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      navigate("/dashboard");
+      navigate("/profile");
     } catch (error) {
       setErrors({
         submit: "Login failed. Please check your credentials and try again.",
@@ -66,8 +66,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <img src={logo} alt="Logo" className="logo" />{" "}
       <div className="login-card">
-        <h2 className="login-title">Welcome back</h2>
+        <h2 className="login-title">Welcome Back</h2>
 
         <form onSubmit={handleSubmit} className="login-form">
           {errors.submit && <div className="error-alert">{errors.submit}</div>}
@@ -106,7 +107,7 @@ const Login = () => {
               Forgot password?
             </CustomButton>
           </div>
-          
+
           <p className="register-link">
             Don't have an account?{" "}
             <CustomButton

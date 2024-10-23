@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/global.css";
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
-import logo from "../../assets/logo.png";
+import "../styles/global.css";
+import CustomInput from "../components/CustomInput";
+import CustomButton from "../components/CustomButton";
+import logo from "../assets/logo.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -78,6 +78,17 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Validate form
+    fetch("http://localhost:3001/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }).then((response) => {
+      console.log(response);
+    });
+        
 
     if (!validateForm()) {
       return;
@@ -87,7 +98,7 @@ const Register = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate("/login");
+      navigate("/profile");
     } catch (error) {
       setErrors({
         submit: "Registration failed. Please try again.",
@@ -99,9 +110,13 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <img src={logo} alt="Logo" className="logo" />{" "}
+      <div className="header">
+        <img src={logo} alt="Logo" className="logo" />{" "}
+        <h1 className="app-title"></h1>
+      </div>
       <div className="register-card">
-        <h2 className="register-title">Create your account</h2>
+        <div style={{ height: "30px" }}></div>
+        <h2 className="register-title">Create your Account</h2>
         <form onSubmit={handleSubmit} className="register-form">
           {errors.submit && <div className="error-alert">{errors.submit}</div>}
 
