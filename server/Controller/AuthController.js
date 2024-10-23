@@ -10,7 +10,7 @@ router.post("/register", async (req, res) => {
         const { username, email, age, password } = req.body;
         const dataExist = await User.findOne({ email: email });
         if (dataExist) {
-            return res.status(409).send("User Already Exist");
+            return res.status(409).json({ message: "User Already Exist" });
         }
         const hashed_password = await helper.hashPassword(password);
         const newUser = new User({
@@ -20,9 +20,9 @@ router.post("/register", async (req, res) => {
             age,
         });
 
-        await newUser.save()
+        const response = await newUser.save()
         if (response) {
-            return res.status(200).send("User Registered Successfully");
+            return res.status(200).json({message: "User Registered Successfully"});
         }
         res.status(500).send("Internal Server Error")
     } catch (e) {
