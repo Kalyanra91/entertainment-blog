@@ -22,7 +22,7 @@ const Register = () => {
     const newErrors = {};
 
     // Username validation
-    const usernameRegex = /^[a-z0-9]+$/;
+    const usernameRegex = /^[a-z0-9_]+$/;
     if (!formData.username.trim()) {
       newErrors.username = "Username is required";
     } else if (formData.username.length < 3) {
