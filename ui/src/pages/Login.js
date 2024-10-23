@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/global.css";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import logo from "../assets/logo.png";
+import Toast from "../components/ToastNotification";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showToast, setShowToast] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (location.state?.registrationSuccess) {
+      setShowToast(true);
+    }
+  }, [location.state]);
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -43,30 +52,51 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+  if (!validateForm()) {
+    return;
+  }
 
-    setIsLoading(true);
+  setIsLoading(true);
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+  try {
+    const response = await fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
       navigate("/profile");
-    } catch (error) {
+    } else {
       setErrors({
-        submit: "Login failed. Please check your credentials and try again.",
+        submit:
+          data.message ||
+          "Login failed. Please check your credentials and try again.",
       });
-    } finally {
-      setIsLoading(false);
     }
-  };
+  } catch (error) {
+    setErrors({
+      submit: "Login failed. Please check your credentials and try again.",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="login-container">
-      <img src={logo} alt="Logo" className="logo" />{" "}
+      <img src={logo} alt="Logo" className="logo" />
+      {/* {showToast && (
+      <Toast message="User created successfully" />
+      )} */}
+      <Toast message="User created successfully" />
       <div className="login-card">
         <h2 className="login-title">Welcome Back</h2>
 
@@ -98,15 +128,6 @@ const Login = () => {
           >
             {isLoading ? "Signing in..." : "Sign in"}
           </CustomButton>
-
-          <div className="forgot-password">
-            <CustomButton
-              onClick={() => navigate("/forgot-password")}
-              className="link-button"
-            >
-              Forgot password?
-            </CustomButton>
-          </div>
 
           <p className="register-link">
             Don't have an account?{" "}

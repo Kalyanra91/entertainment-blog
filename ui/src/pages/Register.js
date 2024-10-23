@@ -85,20 +85,28 @@ const Register = () => {
     }
 
     setIsLoading(true);
-    // Validate form
-    const response = await fetch("http://localhost:3001/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await response.json();
-    console.log(data);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate("/login");
+      const response = await fetch("http://localhost:3001/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {  
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        navigate("/login", {
+          state: { registrationSuccess: true },
+        });
+      } else {
+        setErrors({
+          submit: data.message || "Registration failed. Please try again.",
+        });
+      }
     } catch (error) {
       setErrors({
         submit: "Registration failed. Please try again.",
