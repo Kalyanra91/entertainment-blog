@@ -21,6 +21,11 @@ const Login = () => {
     }
   }, [location.state]);
 
+    const handleToastClose = () => {
+      setShowToast(false);
+      navigate(location.pathname, { replace: true, state: {} });
+    };
+
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -93,10 +98,9 @@ const handleSubmit = async (e) => {
   return (
     <div className="login-container">
       <img src={logo} alt="Logo" className="logo" />
-      {/* {showToast && (
-      <Toast message="User created successfully" />
-      )} */}
-      <Toast message="User created successfully" />
+      {showToast && (
+        <Toast message="User created successfully" onClose={handleToastClose} />
+      )}
       <div className="login-card">
         <h2 className="login-title">Welcome Back</h2>
 
