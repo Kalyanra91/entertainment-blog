@@ -28,7 +28,8 @@ const Register = () => {
     } else if (formData.username.length < 3) {
       newErrors.username = "Username must be at least 3 characters";
     } else if (!usernameRegex.test(formData.username)) {
-      newErrors.username = "Username can only contain letters and numbers";
+      newErrors.username =
+        "Username can only contain lowercase letters and numbers";
     }
 
     // Email validation
@@ -78,6 +79,12 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
     // Validate form
     const response = await fetch("http://localhost:3001/register", {
       method: "POST",
@@ -88,12 +95,6 @@ const Register = () => {
     });
     const data = await response.json();
     console.log(data);
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsLoading(true);
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
