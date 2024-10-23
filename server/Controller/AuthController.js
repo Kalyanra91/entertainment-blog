@@ -20,9 +20,9 @@ router.post("/register", async (req, res) => {
             age,
         });
 
-        const response = await newUser.save()
+        await newUser.save()
         if (response) {
-            return res.status(200).send(response)
+            return res.status(200).send("User Registered Successfully");
         }
         res.status(500).send("Internal Server Error")
     } catch (e) {
