@@ -38,10 +38,10 @@ router.post('/login', async(req, res)=>{
     const exist = await User.findOne({email: email})
     const password_check = await helper.check_password(password, exist.password)
     if (exist && password_check){
-        res.status(200).send('Logged in Successfully')
+        res.status(200).json({message: "Login Successful"})
     }
     else{
-        res.status(401).send('Login Failed. Invalid Credentials')
+        res.status(401).json({message: "Invalid Credentials"})
     }
     }
     catch (err){
