@@ -31,9 +31,9 @@ const UserSchema = new mongoose.Schema(
             default: []
         },
 
-        image:{
+        avatar:{
             type: String,
-            default: "./static/profiles/default.png"
+            default: "./public/images/avatar/default.png"
         },
 
         created_at:{
