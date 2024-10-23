@@ -98,7 +98,7 @@ const Register = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate("/profile");
+      navigate("/login");
     } catch (error) {
       setErrors({
         submit: "Registration failed. Please try again.",
