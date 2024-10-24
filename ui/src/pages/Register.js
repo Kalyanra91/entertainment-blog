@@ -118,10 +118,7 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <div className="header">
-        <img src={logo} alt="Logo" className="logo" />{" "}
-        <h1 className="app-title"></h1>
-      </div>
+        <img src={logo} alt="Logo" className="logo" />
       <div className="register-card">
         <div style={{ height: "30px" }}></div>
         <h2 className="register-title">Create your Account</h2>
