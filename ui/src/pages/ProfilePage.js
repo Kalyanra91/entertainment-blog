@@ -1,8 +1,12 @@
 import React from 'react'
-import Header from '../components/HeaderComponent'
+import Header from '../components/HeaderComponent';
 
 export default function ProfilePage() {
   return (
-    <Header/>
-  )
+    <div>
+      <Header />
+      <div>
+      </div>
+    </div>
+  );
 }

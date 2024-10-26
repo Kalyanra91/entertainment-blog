@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom/dist/index.js";
 import "../styles/global.css";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.png"; 
 import Toast from "../components/ToastNotification";
 
 const Login = () => {

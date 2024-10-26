@@ -42,33 +42,7 @@ const Header = () => {
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
         </div>
-
-        {/* <div className="mobile-nav">
-          <div className="search-container">
-            <i className="fa-solid fa-search search-icon"></i>
-            <CustomInput
-              type="text"
-              name="search"
-              placeholder="Search for entertainment"
-              value={searchValue}
-              onChange={handleSearchChange}
-              className="search-input"
-            />
-          </div>
-          
-          <div className="category-trending">
-            <button className="nav-link mobile" onClick={handleCategoryClick}>
-              Category
-              <i className={`fa-solid fa-chevron-down dropdown-icon ${
-                isCategoryOpen ? "rotate" : ""
-              }`}></i>
-            </button>
-            <a href="/trending" className="nav-link mobile">
-              <i className="fa-solid fa-chart-line me-2"></i>
-              Trending
-            </a>
-          </div>
-        </div> */}
+        
         <div className="header-left">
           <nav className="nav-menu">
             <a href="/" className="nav-link ">
