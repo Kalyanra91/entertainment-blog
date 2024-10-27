@@ -25,7 +25,7 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
                     reader.onloadend = () => {
                       setEditedProfile({
                         ...editedProfile,
-                        profilePicture: reader.result,
+                        avatar: reader.result,
                       });
                     };
                     reader.readAsDataURL(file);
@@ -35,9 +35,9 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
                 id="profile-upload"
               />
               <label htmlFor="profile-upload" className="profile-upload-label">
-                {editedProfile.profilePicture ? (
+                {editedProfile.avatar ? (
                   <img
-                    src={editedProfile.profilePicture}
+                    src={editedProfile.avatar}
                     alt="Profile preview"
                     className="profile-preview"
                   />
@@ -72,9 +72,9 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
               <label>Email</label>
               <input
                 type="email"
-                value={editedProfile.mail}
+                value={editedProfile.email}
                 onChange={(e) =>
-                  setEditedProfile({ ...editedProfile, mail: e.target.value })
+                  setEditedProfile({ ...editedProfile, email: e.target.value })
                 }
                 className="form-input"
               />

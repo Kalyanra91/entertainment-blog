@@ -7,9 +7,9 @@ function ProfileHeader({ profile, onEditClick }) {
       <div className="profile-section-container">
         <div className="profile-section-content">
           <div className="profile-picture">
-            {profile.profilePicture ? (
+            {profile.avatar ? (
               <img
-                src={profile.profilePicture}
+                src={profile.avatar}
                 alt="Profile"
                 className="profile-image"
               />
@@ -25,11 +25,11 @@ function ProfileHeader({ profile, onEditClick }) {
             <div className="user-details">
               <div className="content">
                 <Mail className="info-icon" />
-                <span>{profile.mail}</span>
+                <span>{profile.email}</span>
               </div>
               <div className="content">
                 <Calendar className="info-icon" />
-                <span>Joined {profile.joinDate}</span>
+                <span>Joined {profile.created_at}</span>
               </div>
             </div>
           </div>
