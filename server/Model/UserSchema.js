@@ -1,48 +1,48 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const helper = require("../Helper/Helper");
 
-const UserSchema = new mongoose.Schema(
-    {
-        username:{
-            type: String,
-            required: true,
-            unique: true
-        },
+const UserSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 
-        email:{
-            type: String,
-            unique: true,
-            required: true
-        },
+  about:{
+    type: String,
+    default: "Hello, I'm new here!",
+  },
 
-        password:{
-            type: String,
-            required: true
-        },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+  },
 
-        age:{
-            type: Number,
-            required: true,
-            min: 0
-        },
+  password: {
+    type: String,
+    required: true,
+  },
 
-        blogs:{
-            type: Array,
-            default: []
-        },
+  age: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
 
-        avatar:{
-            type: String,
-            default: "./public/images/avatar/default.png"
-        },
+  avatar: {
+    type: String,
+    default: "./public/images/avatar/default.png",
+  },
 
-        created_at:{
-            type: String,
-            default: helper.formatDate(new Date())
-        }
-    }
-)
+  created_at: {
+    type: String,
+    default: helper.formatDate(new Date()),
+  },
+});
 
-const User = mongoose.model("User", UserSchema)
+UserSchema.index({ email: 1 });
+UserSchema.index({ username: 1 });
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

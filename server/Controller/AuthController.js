@@ -6,47 +6,48 @@ const router = express.Router();
 
 // register
 router.post("/register", async (req, res) => {
-    try {
-        const { username, email, age, password } = req.body;
-        const dataExist = await User.findOne({ email: email });
-        if (dataExist) {
-            return res.status(409).json({ message: "User Already Exist" });
-        }
-        const hashed_password = await helper.hashPassword(password);
-        const newUser = new User({
-            username,
-            email,
-            password: hashed_password,
-            age,
-        });
-
-        const response = await newUser.save()
-        if (response) {
-            return res.status(200).json({message: "User Registered Successfully"});
-        }
-        res.status(500).send("Internal Server Error")
-    } catch (e) {
-        console.log(e)
-        res.status(500).json({ message: e })
+  try {
+    const { username, email, age, password } = req.body;
+    const dataExist = await User.findOne({ email: email });
+    if (dataExist) {
+      return res.status(409).json({ message: "User Already Exist" });
     }
+    const hashed_password = await helper.hashPassword(password);
+    const newUser = new User({
+      username,
+      email,
+      password: hashed_password,
+      age,
+    });
+
+    const response = await newUser.save();
+    if (response) {
+      return res.status(200).json({ message: "User Registered Successfully" });
+    }
+    res.status(500).send("Internal Server Error");
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e });
+  }
 });
 
 // login
-router.post('/login', async(req, res)=>{
-    try{
-    const {email, password} = req.body
-    const exist = await User.findOne({email: email})
-    const password_check = await helper.check_password(password, exist.password)
-    if (exist && password_check){
-        res.status(200).json({message: "Login Successful"})
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const exist = await User.findOne({ email: email });
+    const password_check = await helper.check_password(
+      password,
+      exist.password
+    );
+    if (exist && password_check) {
+      res.status(200).json({ message: "Login Successful" });
+    } else {
+      res.status(401).json({ message: "Invalid Credentials" });
     }
-    else{
-        res.status(401).json({message: "Invalid Credentials"})
-    }
-    }
-    catch (err){
-        console.log(err)
-    }
-})
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
