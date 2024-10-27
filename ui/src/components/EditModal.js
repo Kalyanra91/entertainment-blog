@@ -22,12 +22,6 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
                   const file = e.target.files[0];
                   if (file) {
                     const reader = new FileReader();
-                    reader.onloadend = () => {
-                      setEditedProfile({
-                        ...editedProfile,
-                        avatar: reader.result,
-                      });
-                    };
                     reader.readAsDataURL(file);
                   }
                 }}
@@ -58,10 +52,7 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
               <label>Name</label>
               <input
                 type="text"
-                value={editedProfile.name}
-                onChange={(e) =>
-                  setEditedProfile({ ...editedProfile, name: e.target.value })
-                }
+                value={editedProfile.username}
                 className="form-input"
               />
             </div>
@@ -73,9 +64,6 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
               <input
                 type="email"
                 value={editedProfile.email}
-                onChange={(e) =>
-                  setEditedProfile({ ...editedProfile, email: e.target.value })
-                }
                 className="form-input"
               />
             </div>
@@ -86,9 +74,6 @@ function EditModal({ editedProfile, setEditedProfile, onClose, onSave }) {
               <label>About</label>
               <textarea
                 value={editedProfile.about}
-                onChange={(e) =>
-                  setEditedProfile({ ...editedProfile, about: e.target.value })
-                }
                 className="form-textarea"
                 rows={4}
               />

@@ -9,7 +9,7 @@ import Header from "../components/HeaderComponent.js";
 function ProfilePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [profile, setProfile] = useState({
-    name: "",
+    username: "",
     about: "",
     email: "",
     avatar: "",

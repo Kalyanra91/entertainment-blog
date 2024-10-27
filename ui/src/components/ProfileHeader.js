@@ -21,7 +21,7 @@ function ProfileHeader({ profile, onEditClick }) {
             )}
           </div>
           <div className="profile-info">
-            <h1 className="profile-title">{profile.name}</h1>
+            <h1 className="profile-title">{profile.username}</h1>
             <div className="user-details">
               <div className="content">
                 <Mail className="info-icon" />
