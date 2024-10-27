@@ -7,6 +7,14 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = (e) => {
+    e.stopPropagation();
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsCategoryOpen(false);
+    setIsProfileOpen(false);
+  };
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
@@ -42,7 +50,14 @@ const Header = () => {
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
         </div>
-        
+
+        <button className="hamburger-menu" onClick={toggleMobileMenu}>
+          <i className="fa-solid fa-bars"></i>
+        </button>
+
+        <div
+          className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}
+        >
         <div className="header-left">
           <nav className="nav-menu">
             <a href="/" className="nav-link ">
@@ -175,6 +190,7 @@ const Header = () => {
               />
             </div>
           </nav>
+          </div>
         </div>
 
         <div className="header-right">

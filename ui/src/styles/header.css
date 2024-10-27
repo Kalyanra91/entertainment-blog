@@ -242,3 +242,108 @@
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
+
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--menu-item-color);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-menu:hover {
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+    position: absolute;
+    right: 1rem;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: var(--background-color);
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .mobile-menu.active {
+    left: 0;
+  }
+
+  .header-left {
+    margin: 0;
+    transform: none;
+    width: 100%;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: none;
+  }
+
+  .header-right {
+    position: absolute;
+    right: 4rem;
+  }
+
+  .write-button {
+    padding: 0.5rem;
+  }
+
+  .write-button span {
+    display: none;
+  }
+
+  .profile-name {
+    display: none;
+  }
+
+  .search-container {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .header-right {
+    right: 3rem;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
