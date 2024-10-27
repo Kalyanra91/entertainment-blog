@@ -8,6 +8,11 @@ const UserSchema = new mongoose.Schema({
     unique: true,
   },
 
+  about:{
+    type: String,
+    default: "Hello, I'm new here!",
+  },
+
   email: {
     type: String,
     unique: true,
@@ -23,11 +28,6 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0,
-  },
-
-  blogs: {
-    type: Array,
-    default: [],
   },
 
   avatar: {
