@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const helper = require("../Helper/Helper");
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -37,7 +36,7 @@ const UserSchema = new mongoose.Schema({
 
   created_at: {
     type: String,
-    default: helper.formatDate(new Date()),
+    default: Date.now,
   },
 });
 
