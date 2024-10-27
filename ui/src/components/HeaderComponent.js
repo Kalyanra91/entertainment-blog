@@ -202,7 +202,7 @@ const Header = () => {
               <div className="profile-icon-container">
                 <i className="fa-solid fa-user profile-icon"></i>
               </div>
-              <div className="profile-name">Jayanth paladugu</div>
+              <div className="profile-name">{ profile.username }</div>
             </button>
 
             {isProfileOpen && (
