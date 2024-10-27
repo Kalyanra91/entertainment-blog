@@ -55,141 +55,139 @@ const Header = () => {
           <i className="fa-solid fa-bars"></i>
         </button>
 
-        <div
-          className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}
-        >
-        <div className="header-left">
-          <nav className="nav-menu">
-            <a href="/" className="nav-link ">
-              Home
-            </a>
-            <div className="dropdown-container">
-              <button
-                className="nav-link dropdown-trigger"
-                onClick={handleCategoryClick}
-              >
-                <span>Categories</span>
-                <i
-                  className={`fa-solid fa-chevron-down dropdown-icon ${
-                    isCategoryOpen ? "rotate" : ""
-                  }`}
-                ></i>
-              </button>
+        <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
+          <div className="header-left">
+            <nav className="nav-menu">
+              <a href="/" className="nav-link ">
+                Home
+              </a>
+              <div className="dropdown-container">
+                <button
+                  className="nav-link dropdown-trigger"
+                  onClick={handleCategoryClick}
+                >
+                  <span>Categories</span>
+                  <i
+                    className={`fa-solid fa-chevron-down dropdown-icon ${
+                      isCategoryOpen ? "rotate" : ""
+                    }`}
+                  ></i>
+                </button>
 
-              {isCategoryOpen && (
-                <div className="dropdown-menu">
-                  <a href="/movies" className="dropdown-item">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-film me-2"
-                    >
-                      <rect
-                        x="2"
-                        y="2"
-                        width="20"
-                        height="20"
-                        rx="2.18"
-                        ry="2.18"
-                      ></rect>
-                      <line x1="7" y1="2" x2="7" y2="22"></line>
-                      <line x1="17" y1="2" x2="17" y2="22"></line>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <line x1="2" y1="7" x2="7" y2="7"></line>
-                      <line x1="2" y1="17" x2="7" y2="17"></line>
-                      <line x1="17" y1="17" x2="22" y2="17"></line>
-                      <line x1="17" y1="7" x2="22" y2="7"></line>
-                    </svg>
-                    Movies
-                  </a>
-                  <a href="/tv-shows" className="dropdown-item">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-tv me-2"
-                    >
-                      <rect
-                        x="2"
-                        y="7"
-                        width="20"
-                        height="15"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <polyline points="17 2 12 7 7 2"></polyline>
-                    </svg>
-                    TV Shows
-                  </a>
-                  <a href="/music" className="dropdown-item">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-music me-2"
-                    >
-                      <path d="M9 18V5l12-2v13"></path>
-                      <circle cx="6" cy="18" r="3"></circle>
-                      <circle cx="18" cy="16" r="3"></circle>
-                    </svg>
-                    Music
-                  </a>
-                  <a href="/other" className="dropdown-item">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-more-horizontal me-2"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                    Other
-                  </a>
-                </div>
-              )}
-            </div>
-            <a href="/trending" className="nav-link">
-              Trending
-            </a>
-            <div className="search-container">
-              <i className="fa-solid fa-search search-icon"></i>
-              <CustomInput
-                type="text"
-                name="search"
-                placeholder="Search for entertainment"
-                value={searchValue}
-                onChange={handleSearchChange}
-                className="search-input"
-              />
-            </div>
-          </nav>
+                {isCategoryOpen && (
+                  <div className="dropdown-menu">
+                    <a href="/movies" className="dropdown-item">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-film me-2"
+                      >
+                        <rect
+                          x="2"
+                          y="2"
+                          width="20"
+                          height="20"
+                          rx="2.18"
+                          ry="2.18"
+                        ></rect>
+                        <line x1="7" y1="2" x2="7" y2="22"></line>
+                        <line x1="17" y1="2" x2="17" y2="22"></line>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <line x1="2" y1="7" x2="7" y2="7"></line>
+                        <line x1="2" y1="17" x2="7" y2="17"></line>
+                        <line x1="17" y1="17" x2="22" y2="17"></line>
+                        <line x1="17" y1="7" x2="22" y2="7"></line>
+                      </svg>
+                      Movies
+                    </a>
+                    <a href="/tv-shows" className="dropdown-item">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-tv me-2"
+                      >
+                        <rect
+                          x="2"
+                          y="7"
+                          width="20"
+                          height="15"
+                          rx="2"
+                          ry="2"
+                        ></rect>
+                        <polyline points="17 2 12 7 7 2"></polyline>
+                      </svg>
+                      TV Shows
+                    </a>
+                    <a href="/music" className="dropdown-item">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-music me-2"
+                      >
+                        <path d="M9 18V5l12-2v13"></path>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <circle cx="18" cy="16" r="3"></circle>
+                      </svg>
+                      Music
+                    </a>
+                    <a href="/other" className="dropdown-item">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-more-horizontal me-2"
+                      >
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="12" r="1"></circle>
+                        <circle cx="5" cy="12" r="1"></circle>
+                      </svg>
+                      Other
+                    </a>
+                  </div>
+                )}
+              </div>
+              <a href="/trending" className="nav-link">
+                Trending
+              </a>
+              <div className="search-container">
+                <i className="fa-solid fa-search search-icon"></i>
+                <CustomInput
+                  type="text"
+                  name="search"
+                  placeholder="Search for entertainment"
+                  value={searchValue}
+                  onChange={handleSearchChange}
+                  className="search-input"
+                />
+              </div>
+            </nav>
           </div>
         </div>
 
