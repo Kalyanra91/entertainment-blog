@@ -14,7 +14,7 @@ app.use(cors());
 require("./Database/Db");
 
 // images
-app.use("/avatar", express.static("./public/images/avatar"));
+app.use("/profiles", express.static("./public/images/avatar"));
 
 // controllers
 const AuthController = require("./Controller/AuthController");
