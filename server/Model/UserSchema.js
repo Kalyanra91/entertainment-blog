@@ -31,11 +31,11 @@ const UserSchema = new mongoose.Schema({
 
   avatar: {
     type: String,
-    default: "./public/images/avatar/default.png",
+    default: "http://localhost:3001/profiles/default.png",
   },
 
   created_at: {
-    type: String,
+    type: Date,
     default: Date.now,
   },
 });
