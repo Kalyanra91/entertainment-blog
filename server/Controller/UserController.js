@@ -24,12 +24,14 @@ const verifyToken = (req, res, next) => {
 
 
 // get profile
-router.get("/profile/:username", verifyToken, async (req, res) => {
+router.get("/profile", verifyToken, async (req, res) => {
   try {
-    const { username } = req.params;
-    const user = await User.findOne({ username: username }).select(
+    const id = req.user?.id
+    console.log(id);
+    const user = await User.findOne({ _id: id }).select(
       "-password -__v -_id -age"
     );
+    console.log(user);
     if (user) {
       return res.status(200).send(user);
     }

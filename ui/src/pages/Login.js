@@ -16,6 +16,22 @@ const Login = () => {
   });
 
   useEffect(() => {
+    // Check if user is already logged in
+    fetch("http://localhost:3001/profile", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.ok) {
+          navigate("/profile");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+
+  useEffect(() => {
     if (location.state?.registrationSuccess) {
       setShowToast(true);
     }

@@ -6,19 +6,11 @@ import EditModal from "../components/EditModal";
 import "../styles/profile.css";
 import Header from "../components/HeaderComponent.js";
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
 function ProfilePage() {
 
   const navigate = useNavigate();
   useEffect(() => {
-  const username = getCookie('username');
-
-  fetch(`http://localhost:3001/profile/${username}`, { method: "GET" , credentials: "include"})
+  fetch(`http://localhost:3001/profile`, { method: "GET" , credentials: "include"})
     .then((response) => response.json())
     .then((data) => {
       const date = new Date(data.created_at);
@@ -29,7 +21,7 @@ function ProfilePage() {
       navigate("/login");
       console.error("Error:", error);
     });
-  }, []);
+  }, [navigate]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [profile, setProfile] = useState({

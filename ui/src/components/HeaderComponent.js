@@ -4,12 +4,6 @@ import CustomInput from "../components/CustomInput";
 import logo from "../assets/logo.png";
 import "../styles/header.css";
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
-}
-
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -19,9 +13,7 @@ const Header = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    const username = getCookie("username");
-
-    fetch(`http://localhost:3001/profile/${username}`, {
+    fetch(`http://localhost:3001/profile`, {
       method: "GET",
       credentials: "include",
     })
@@ -36,7 +28,7 @@ const Header = () => {
         navigate("/login");
         console.error("Error:", error);
       });
-  }, []);
+  }, [navigate]);
 
   const toggleMobileMenu = (e) => {
     e.stopPropagation();

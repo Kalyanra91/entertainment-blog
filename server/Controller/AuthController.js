@@ -46,9 +46,8 @@ router.post("/login", async (req, res) => {
       exist.password
     );
     if (exist && password_check) {
-      const token = jwt.sign({username: exist.username, email: exist.email}, process.env.SECRET_KEY, {expiresIn: "1h"});
+      const token = jwt.sign({id: exist._id}, process.env.SECRET_KEY, {expiresIn: "1h"});
       res.cookie("token", token, { httpOnly: true});
-      res.cookie("username", exist.username)
       res.status(200).json({ message: "Login Successful"});
     } else {
       res.status(401).json({ message: "Invalid Credentials" });
