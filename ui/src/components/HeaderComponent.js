@@ -218,9 +218,6 @@ const Header = () => {
                   </div>
                 )}
               </div>
-              <a href="/trending" className="nav-link">
-                Trending
-              </a>
               <div className="search-container">
                 <i className="fa-solid fa-search search-icon"></i>
                 <CustomInput

@@ -1,0 +1,91 @@
+* {
+    font-family: "DM Sans", sans-serif;
+}
+
+.write-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.editor-toolbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 1000;
+}
+
+.editor-toolbar img {
+    padding: 8px;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editor-toolbar .style-button {
+    padding: 8px;
+    background: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.style-button:hover {
+    background-color: #f0f0f0;
+}
+
+.style-button.active {
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+
+.editor-toolbar .publish-button {
+    margin-left: auto;
+    padding: 8px 24px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.title-section {
+    margin-bottom: 20px;
+}
+
+.title-section input {
+    width: 100%;
+    font-size: 32px;
+    padding: 10px 0;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.content-section {
+    min-height: 400px;
+    padding: 10px 0;
+    font-size: 18px;
+    line-height: 1.6;
+    outline: none;
+}
+
+.content-section[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #757575;
+}

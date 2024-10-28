@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
 import ProfilePage from "./pages/ProfilePage";
+import Write from "./pages/Write.js";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/test" element={<Test/>} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/write" element={<Write />} />
       </Routes>
     </Router>
   );
