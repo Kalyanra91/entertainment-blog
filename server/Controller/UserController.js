@@ -2,11 +2,30 @@ const express = require("express");
 const helper = require("../Helper/Helper");
 const multer = require("multer");
 const User = require("../Model/UserSchema");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
+const verifyToken = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(403).json({ message: "Token required" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    console.log(decoded);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ message: "Invalid Token" });
+  }
+};
+
+
 // get profile
-router.get("/profile/:username", async (req, res) => {
+router.get("/profile/:username", verifyToken, async (req, res) => {
   try {
     const { username } = req.params;
     const user = await User.findOne({ username: username }).select(

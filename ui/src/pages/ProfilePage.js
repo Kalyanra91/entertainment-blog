@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ProfileHeader from "../components/ProfileHeader";
 import ProfileContent from "../components/ProfileContent";
 import EditModal from "../components/EditModal";
 import "../styles/profile.css";
 import Header from "../components/HeaderComponent.js";
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 function ProfilePage() {
 
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:3001/profile/johndoe")
-      .then((response) => response.json())
-      .then((data) => {
-        const date = new Date(data.created_at);
-        const options = { year: "numeric", month: "long"};
-        data.created_at = date.toLocaleDateString("en-US", options);
-        setProfile(data);
-      });
+  const username = getCookie('username');
+
+  fetch(`http://localhost:3001/profile/${username}`, { method: "GET" , credentials: "include"})
+    .then((response) => response.json())
+    .then((data) => {
+      const date = new Date(data.created_at);
+      const options = { year: "numeric", month: "long"};
+      data.created_at = date.toLocaleDateString("en-US", options);
+      setProfile(data);
+    }).catch((error) => {
+      navigate("/login");
+      console.error("Error:", error);
+    });
   }, []);
 
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -44,6 +44,21 @@ const Header = () => {
     return () => document.removeEventListener("click", closeDropdowns);
   }, []);
 
+  function logout() {
+    fetch("http://localhost:3001/logout", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.ok) {
+          window.location.href = "/login";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
   return (
     <header className="header">
       <div className="header-container">
@@ -225,7 +240,7 @@ const Header = () => {
                   </svg>
                   Profile
                 </a>
-                <a href="/login" className="dropdown-item">
+                <a href="/" onClick={logout} className="dropdown-item">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

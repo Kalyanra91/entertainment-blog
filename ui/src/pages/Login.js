@@ -73,6 +73,7 @@ const handleSubmit = async (e) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
+      credentials: "include"
     });
 
     const data = await response.json();
