@@ -95,7 +95,7 @@ const Header = () => {
         <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
           <div className="header-left">
             <nav className="nav-menu">
-              <a href="/" className="nav-link ">
+              <a href="/home" className="nav-link ">
                 Home
               </a>
               <div className="dropdown-container">
