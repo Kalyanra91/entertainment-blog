@@ -13,7 +13,7 @@ body{
 
 }
 
-.header-container{
+.header-container-l{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,7 +24,7 @@ body{
     z-index: 100;
 }
 
-.header-container .logo-container{
+.header-container-l .logo-container{
     width: 200px;
     img{
         width: 100%;
@@ -33,7 +33,7 @@ body{
     }
 }
 
-.header-container .links-container{
+.header-container-l .links-container{
     display: flex;
     justify-content: space-between;
     align-items: center;

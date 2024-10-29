@@ -8,7 +8,7 @@ function Landing() {
 
   return (
     <>
-      <div className="header-container">
+      <div className="header-container-l">
         <div className="logo-container">
           <img src={Logo} alt="logo" />
         </div>
