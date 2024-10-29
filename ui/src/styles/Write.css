@@ -1,91 +1,256 @@
-* {
-    font-family: "DM Sans", sans-serif;
+.write-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Libre Baskerville", serif;
 }
 
-.write-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.thumbnail-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0 0 24px 0;
+  overflow: hidden;
+}
+
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .editor-toolbar {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 20px;
-    z-index: 1000;
+  position: fixed;
+  width: 100%;
+  max-width: 770px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  z-index: 1000;
 }
 
-.editor-toolbar img {
-    padding: 8px;
-    background: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.editor-toolbar .style-button {
-    padding: 8px;
-    background: none;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.style-button {
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
 }
 
 .style-button:hover {
-    background-color: #f0f0f0;
+  background-color: #f9fafb;
 }
 
 .style-button.active {
-    background-color: black;
-    color: white;
-    border-color: black;
+  background-color: black;
+  color: white;
+  border-color: black;
 }
 
-.editor-toolbar .publish-button {
-    margin-left: auto;
-    padding: 8px 24px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
+.publish-button {
+  margin-left: auto;
+  padding: 8px 24px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.publish-button:hover {
+  background-color: #1f2937;
 }
 
 .title-section {
-    margin-bottom: 20px;
+  padding-top: 100px;
 }
 
-.title-section input {
-    width: 100%;
-    font-size: 32px;
-    padding: 10px 0;
-    border: none;
-    outline: none;
-    font-weight: bold;
-    background-color: transparent;
+.title-input {
+  width: 100%;
+  font-size: 48px;
+  padding: 10px 0;
+  font-weight: 900;
+  outline: none;
+  min-height: 64px;
+}
+
+.title-input:empty::before {
+  content: attr(data-placeholder);
+  color: #afafaf;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.option-section {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.thumbnail-button {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  background: none;
+}
+
+.thumbnail-button:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
 .content-section {
-    min-height: 400px;
-    padding: 10px 0;
-    font-size: 18px;
-    line-height: 1.6;
-    outline: none;
+  min-height: 400px;
+  outline: none;
+  font-family: "Libre Baskerville", serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+.content-section > div {
+  min-height: 1.6em;
 }
 
-.content-section[placeholder]:empty:before {
-    content: attr(placeholder);
-    color: #757575;
+.content-section * {
+  font-family: inherit !important;
+}
+
+.content-section:empty::before {
+  content: attr(data-placeholder);
+  color: #afafaf;
+  pointer-events: none;
+  font-family: "Libre Baskerville", serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .write-container {
+    padding: 12px;
+  }
+
+  .editor-toolbar {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .style-button {
+    padding: 6px;
+  }
+
+  .publish-button {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  .title-input {
+    font-size: 32px;
+  }
+
+  .content-section {
+    font-size: 16px;
+  }
+
+  .content-section:empty::before {
+    font-size: 14px;
+  }
+
+  .title-input:empty::before {
+    font-size: 28px;
+  }
+
+  .title-section {
+    padding-top: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .editor-toolbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .style-button {
+    padding: 4px;
+  }
+
+  .publish-button {
+    width: 100%;
+    margin-top: 8px;
+    order: 1;
+  }
+
+  .title-section {
+    padding-top: 120px;
+  }
+}
+
+.category {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+}
+
+.category-select {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+}
+
+.category::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.category-select:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.category-select option {
+  padding: 10px;
+  background-color: white;
+  color: #333;
 }
