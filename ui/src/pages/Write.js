@@ -19,9 +19,7 @@ function Write() {
     alignCenter: false,
     highlight: false,
   });
-  const contentRef = useRef(null);
   const fileInputRef = useRef(null);
-  const titleRef = useRef(null);
   const [formData, setFromData] = useState({
     title: "",
     content: "",
@@ -29,59 +27,7 @@ function Write() {
     thumbnailFile: null,
   });
 
-  const handleSubmit = async () => {
-    
-  }
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Enter" && contentRef.current) {
-        e.preventDefault();
-
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-
-        let currentBlock = range.startContainer;
-        while (currentBlock && currentBlock.nodeType !== 1) {
-          currentBlock = currentBlock.parentNode;
-        }
-
-        // Create a new block
-        const newBlock = document.createElement("div");
-        newBlock.style.fontFamily = "serif";
-        newBlock.style.fontSize = "20px";
-        newBlock.style.lineHeight = "1.6";
-        newBlock.innerHTML = "<br>";
-
-        if (currentBlock && currentBlock !== contentRef.current) {
-          currentBlock.parentNode.insertBefore(
-            newBlock,
-            currentBlock.nextSibling
-          );
-        } else {
-          contentRef.current.appendChild(newBlock);
-        }
-
-        const newRange = document.createRange();
-        newRange.setStart(newBlock, 0);
-        newRange.collapse(true);
-
-        selection.removeAllRanges();
-        selection.addRange(newRange);
-      }
-    };
-
-    const contentElement = contentRef.current;
-    if (contentElement) {
-      contentElement.addEventListener("keydown", handleKeyDown);
-    }
-
-    return () => {
-      if (contentElement) {
-        contentElement.removeEventListener("keydown", handleKeyDown);
-      }
-    };
-  }, []);
+  const handleSubmit = async () => {};
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -173,16 +119,12 @@ function Write() {
     };
   }, []);
 
-  useEffect(() => {
-    if (contentRef.current && !contentRef.current.hasChildNodes()) {
-      const initialBlock = document.createElement("div");
-      initialBlock.style.fontFamily = "serif";
-      initialBlock.style.fontSize = "20px";
-      initialBlock.style.lineHeight = "1.6";
-      initialBlock.innerHTML = "<br>";
-      contentRef.current.appendChild(initialBlock);
-    }
-  }, []);
+  const handleTextAreaInput = (e) => {
+    const textarea = e.target;
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+    setFromData({ ...formData, content: textarea.value });
+  };
 
   return (
     <div className="write-container">
@@ -227,12 +169,12 @@ function Write() {
       </div>
 
       <div className="title-section">
-        <div
-          ref={titleRef}
-          contentEditable={true}
+        <input
+          type="text"
           value={formData.title}
           className="title-input"
-          data-placeholder="Title"
+          placeholder="Title"
+          onChange={(e) => setFromData({ ...formData, title: e.target.value })}
         />
       </div>
 
@@ -283,12 +225,11 @@ function Write() {
         )}
       </div>
 
-      <div
-        ref={contentRef}
+      <textarea
         className="content-section"
-        contentEditable={true}
+        placeholder="Start writing here..."
         value={formData.content}
-        data-placeholder="Start writing here..."
+        onChange={handleTextAreaInput}
         onKeyUp={checkActiveStyles}
         onMouseUp={checkActiveStyles}
       />
