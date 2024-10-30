@@ -30,6 +30,9 @@ app.use(AuthController);
 const UserController = require("./Controller/UserController");
 app.use(UserController);
 
+const BlogController = require("./Controller/BlogController");
+app.use(BlogController);
+
 // get users
 const User = require("./Model/UserSchema");
 app.get("/users", (req, res) => {

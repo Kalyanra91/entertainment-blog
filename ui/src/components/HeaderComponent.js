@@ -226,7 +226,7 @@ const Header = () => {
         </div>
 
         <div className="header-right">
-          <button className="write-button">
+          <button className="write-button" onClick={() => navigate("/write")}>
             <i className="fa-regular fa-pen-to-square"></i>
             <span>Write</span>
           </button>

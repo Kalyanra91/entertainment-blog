@@ -5,6 +5,10 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  thumbnail: {
+    type: String,
+    default: "./public/images/blogthumbs/default.png",
+  },
   content: {
     type: String,
     required: true,

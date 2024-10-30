@@ -27,8 +27,6 @@ function Write() {
     thumbnailFile: null,
   });
 
-  const handleSubmit = async () => {};
-
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -117,6 +115,7 @@ function Write() {
     return () => {
       document.removeEventListener("selectionchange", handleSelectionChange);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTextAreaInput = (e) => {
@@ -124,6 +123,33 @@ function Write() {
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
     setFromData({ ...formData, content: textarea.value });
+  };
+
+  const handleSubmit = async (e) => {
+    const Data = new FormData();
+    Data.append("title", formData.title);
+    Data.append("content", formData.content);
+    Data.append("category", formData.category);
+    Data.append("image", formData.thumbnailFile);
+    e.preventDefault();
+    fetch("http://localhost:3001/blogs", {
+      method: "POST",
+      body: Data,
+      headers: {
+        contentType: "multipart/form-data",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Blog post created successfully");
+        } else {
+          alert("Failed to create blog post");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -165,7 +191,7 @@ function Write() {
         >
           <AlignCenter size={24} />
         </button>
-        <button className="publish-button">Publish</button>
+        <button className="publish-button" onClick={handleSubmit}>Publish</button>
       </div>
 
       <div className="title-section">

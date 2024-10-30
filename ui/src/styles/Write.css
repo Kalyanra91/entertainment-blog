@@ -6,15 +6,15 @@
 }
 
 .thumbnail-wrapper {
-  width: 100%;
-  height: 100%;
+  width: 800px;
+  height: 400px;
   padding: 0 0 24px 0;
   overflow: hidden;
+  margin-bottom: 24px;
 }
 
 .thumbnail-image {
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
@@ -102,7 +102,6 @@
 .option-section {
   display: flex;
   gap: 24px;
-  margin-bottom: 24px;
 }
 
 .thumbnail-button {
