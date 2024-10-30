@@ -22,6 +22,16 @@ function Write() {
   const contentRef = useRef(null);
   const fileInputRef = useRef(null);
   const titleRef = useRef(null);
+  const [formData, setFromData] = useState({
+    title: "",
+    content: "",
+    category: "",
+    thumbnailFile: null,
+  });
+
+  const handleSubmit = async () => {
+    
+  }
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -79,6 +89,10 @@ function Write() {
 
     const imageUrl = URL.createObjectURL(file);
     setThumbnailImage(imageUrl);
+    setFromData((prev) => ({
+      ...prev,
+      thumbnailFile: file,
+    }));
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -187,7 +201,7 @@ function Write() {
         </button>
         <button
           className={`style-button ${activeStyles.italic ? "active" : ""}`}
-          onClick={() => handleFormat("italic","serif")}
+          onClick={() => handleFormat("italic", "serif")}
         >
           <Italic size={24} />
         </button>
@@ -216,6 +230,7 @@ function Write() {
         <div
           ref={titleRef}
           contentEditable={true}
+          value={formData.title}
           className="title-input"
           data-placeholder="Title"
         />
@@ -223,7 +238,13 @@ function Write() {
 
       <div className="option-section">
         <div className="category">
-          <select className="category-select">
+          <select
+            className="category-select"
+            value={formData.category}
+            onChange={(e) =>
+              setFromData({ ...formData, category: e.target.value })
+            }
+          >
             <option value="Select a category">Select a category</option>
             <option value="Movies">Movies</option>
             <option value="TV-shows">TV-shows</option>
@@ -266,6 +287,7 @@ function Write() {
         ref={contentRef}
         className="content-section"
         contentEditable={true}
+        value={formData.content}
         data-placeholder="Start writing here..."
         onKeyUp={checkActiveStyles}
         onMouseUp={checkActiveStyles}
