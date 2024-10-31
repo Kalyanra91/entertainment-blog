@@ -22,7 +22,6 @@
   position: fixed;
   width: 100%;
   max-width: 770px;
-  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
@@ -32,8 +31,6 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
   z-index: 1000;
 }
 
@@ -90,12 +87,14 @@
   background: transparent;
 }
 
-.title-input::placeholder {
+.title-input:empty::before {
+  content: attr(data-placeholder);
   color: #afafaf;
+  pointer-events: none;
   opacity: 0.8;
 }
 
-.title-input:focus{
+.title-input:focus {
   border: none;
 }
 
@@ -136,6 +135,13 @@
 
 .content-section * {
   font-family: inherit !important;
+}
+
+.content-section:empty::before {
+  content: attr(placeholder);
+  color: #afafaf;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {
@@ -246,22 +252,41 @@
   color: #333;
 }
 
-.content-section {
-  width: 100%;
-  min-height: 400px;
-  outline: none;
-  font-family: "Libre Baskerville", serif;
+.ql-container {
+  min-height: 200px;
   font-size: 20px;
-  line-height: 1.6;
-  border: none;
-  resize: none;
-  padding: 0;
-  background: transparent;
 }
 
-.content-section::placeholder {
-  color: #afafaf;
+.ql-editor {
+  min-height: 200px;
+  font-family: inherit;
+}
+
+.ql-toolbar {
+  border-radius: 12px 12px 0 0;
+}
+
+.ql-editor.ql-blank::before {
   font-family: "Libre Baskerville", serif;
-  font-size: 16px;
-  line-height: 1.6;
+}
+
+.ql-container {
+  border-radius: 0 0 12px 12px;
+}
+
+.ql-toolbar.ql-snow .ql-formats {
+  margin-right: 15px;
+}
+
+.ql-toolbar.ql-snow button {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ql-toolbar.ql-snow button svg {
+  width: 24px;
+  height: 24px;
 }

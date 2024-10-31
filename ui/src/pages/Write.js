@@ -1,31 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  Bold,
-  Italic,
-  AlignLeft,
-  AlignCenter,
-  Highlighter,
-  Plus,
-} from "lucide-react";
+import React, { useState, useRef } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Plus } from "lucide-react";
 import "../styles/Write.css";
 import logo from "../assets/logo.png";
 
 function Write() {
   const [thumbnailImage, setThumbnailImage] = useState("");
-  const [activeStyles, setActiveStyles] = useState({
-    bold: false,
-    italic: false,
-    alignLeft: false,
-    alignCenter: false,
-    highlight: false,
-  });
   const fileInputRef = useRef(null);
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     content: "",
     category: "",
     thumbnailFile: null,
   });
+
+  const modules = {
+    toolbar: [
+      ["bold", "italic", "underline"],
+      [{ align: [] }],
+      ["clean"],
+      [{ background: [] }],
+    ],
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -33,7 +30,7 @@ function Write() {
 
     const imageUrl = URL.createObjectURL(file);
     setThumbnailImage(imageUrl);
-    setFromData((prev) => ({
+    setFormData((prev) => ({
       ...prev,
       thumbnailFile: file,
     }));
@@ -43,155 +40,42 @@ function Write() {
     }
   };
 
-  const checkActiveStyles = () => {
-    setActiveStyles({
-      bold: document.queryCommandState("bold"),
-      italic: document.queryCommandState("italic"),
-      alignLeft: document.queryCommandState("justifyLeft"),
-      alignCenter: document.queryCommandState("justifyCenter"),
-      highlight: checkHighlight(),
-    });
-  };
-
-  const checkHighlight = () => {
-    const selection = window.getSelection();
-    if (!selection.rangeCount) return false;
-
-    const range = selection.getRangeAt(0);
-    const ancestor = range.commonAncestorContainer;
-    const node = ancestor.nodeType === 3 ? ancestor.parentNode : ancestor;
-
-    return node.closest('[data-highlighted="true"]') !== null;
-  };
-
-  const handleFormat = (command) => {
-    if (command === "highlight") {
-      applyHighlight();
-    } else {
-      document.execCommand(command, false, null);
-    }
-    checkActiveStyles();
-  };
-
-  const applyHighlight = () => {
-    const selection = window.getSelection();
-    if (!selection.rangeCount) return;
-
-    const range = selection.getRangeAt(0);
-    if (range.collapsed) return;
-
-    const highlighted = checkHighlight();
-
-    if (highlighted) {
-      const highlightedSpan = range.commonAncestorContainer.parentElement;
-      if (highlightedSpan && highlightedSpan.hasAttribute("data-highlighted")) {
-        const text = highlightedSpan.textContent;
-        const textNode = document.createTextNode(text);
-        highlightedSpan.parentNode.replaceChild(textNode, highlightedSpan);
-      }
-    } else {
-      const span = document.createElement("span");
-      span.setAttribute("data-highlighted", "true");
-      span.style.backgroundColor = "yellow";
-      span.style.fontFamily = "inherit";
-
-      try {
-        range.surroundContents(span);
-      } catch (error) {
-        console.error("Failed to highlight text:", error);
-      }
-    }
-
-    selection.removeAllRanges();
-    selection.addRange(range);
-  };
-
-  useEffect(() => {
-    const handleSelectionChange = () => {
-      checkActiveStyles();
-    };
-
-    document.addEventListener("selectionchange", handleSelectionChange);
-    return () => {
-      document.removeEventListener("selectionchange", handleSelectionChange);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleTextAreaInput = (e) => {
-    const textarea = e.target;
-    textarea.style.height = "auto";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-    setFromData({ ...formData, content: textarea.value });
-  };
-
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const Data = new FormData();
     Data.append("title", formData.title);
     Data.append("content", formData.content);
     Data.append("category", formData.category);
     Data.append("image", formData.thumbnailFile);
-    e.preventDefault();
-    fetch("http://localhost:3001/blogs", {
-      method: "POST",
-      body: Data,
-      headers: {
-        contentType: "multipart/form-data",
-      },
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Blog post created successfully");
-        } else {
-          alert("Failed to create blog post");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+ 
+    try {
+      const response = await fetch("http://localhost:3001/blogs", {
+        method: "POST",
+        body: Data,
+        credentials: "include",
       });
+
+      if (response.ok) {
+        alert("Blog post created successfully");
+      } else {
+        alert("Failed to create blog post");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
     <div className="write-container">
-      <img
-        src={logo}
-        alt="Logo"
-        className="logo"
-        style={{ marginTop: "10px" }}
-      />
       <div className="editor-toolbar">
-        <button
-          className={`style-button ${activeStyles.bold ? "active" : ""}`}
-          onClick={() => handleFormat("bold")}
-        >
-          <Bold size={24} />
+        <img
+          src={logo}
+          alt="Logo"
+          className="logo"
+        />
+        <button className="publish-button" onClick={handleSubmit}>
+          Publish
         </button>
-        <button
-          className={`style-button ${activeStyles.italic ? "active" : ""}`}
-          onClick={() => handleFormat("italic", "serif")}
-        >
-          <Italic size={24} />
-        </button>
-        <button
-          className={`style-button ${activeStyles.highlight ? "active" : ""}`}
-          onClick={() => handleFormat("highlight")}
-        >
-          <Highlighter size={24} />
-        </button>
-        <button
-          className={`style-button ${activeStyles.alignLeft ? "active" : ""}`}
-          onClick={() => handleFormat("justifyLeft")}
-        >
-          <AlignLeft size={24} />
-        </button>
-        <button
-          className={`style-button ${activeStyles.alignCenter ? "active" : ""}`}
-          onClick={() => handleFormat("justifyCenter")}
-        >
-          <AlignCenter size={24} />
-        </button>
-        <button className="publish-button" onClick={handleSubmit}>Publish</button>
       </div>
 
       <div className="title-section">
@@ -200,7 +84,7 @@ function Write() {
           value={formData.title}
           className="title-input"
           placeholder="Title"
-          onChange={(e) => setFromData({ ...formData, title: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
       </div>
 
@@ -210,10 +94,10 @@ function Write() {
             className="category-select"
             value={formData.category}
             onChange={(e) =>
-              setFromData({ ...formData, category: e.target.value })
+              setFormData({ ...formData, category: e.target.value })
             }
           >
-            <option value="Select a category">Select a category</option>
+            <option value="">Select a category</option>
             <option value="Movies">Movies</option>
             <option value="TV-shows">TV-shows</option>
             <option value="Music">Music</option>
@@ -251,13 +135,13 @@ function Write() {
         )}
       </div>
 
-      <textarea
+      <ReactQuill
+        theme="snow"
+        value={formData.content}
+        onChange={(content) => setFormData({ ...formData, content })}
+        modules={modules}
         className="content-section"
         placeholder="Start writing here..."
-        value={formData.content}
-        onChange={handleTextAreaInput}
-        onKeyUp={checkActiveStyles}
-        onMouseUp={checkActiveStyles}
       />
     </div>
   );
