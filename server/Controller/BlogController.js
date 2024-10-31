@@ -49,7 +49,6 @@ const upload = multer({ storage: storage });
 router.post("/blogs", verifyToken, upload.single("image"), async (req, res) => {
   try {
     const { title, content, category } = req.body;
-    // remove extension from filename
     const thumbnail = req.file ? `/images/blogthumbs/${req.file.originalname}` : null;
     const user = await User.findOne({ _id: req.user.id });
     const author = {
