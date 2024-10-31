@@ -79,7 +79,7 @@ function Write() {
       </div>
 
       <div className="title-section">
-        <input
+        <div
           type="text"
           value={formData.title}
           className="title-input"
