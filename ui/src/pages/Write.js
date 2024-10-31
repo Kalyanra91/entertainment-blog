@@ -40,8 +40,22 @@ function Write() {
     }
   };
 
+  const handleTitleChange = (e) => {
+    const titleText = e.currentTarget.innerText;
+    setFormData((prev) => ({
+      ...prev,
+      title: titleText,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.title.trim()) {
+      alert("Please enter a title for your blog post");
+      return;
+    }
+
     const Data = new FormData();
     Data.append("title", formData.title);
     Data.append("content", formData.content);
@@ -77,10 +91,9 @@ function Write() {
       <div className="title-section">
         <div
           contentEditable={true}
-          value={formData.title}
           className="title-input"
+          onInput={handleTitleChange}
           data-placeholder="Title"
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
       </div>
 
