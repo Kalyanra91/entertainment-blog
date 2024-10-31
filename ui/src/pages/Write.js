@@ -47,7 +47,7 @@ function Write() {
     Data.append("content", formData.content);
     Data.append("category", formData.category);
     Data.append("image", formData.thumbnailFile);
- 
+
     try {
       const response = await fetch("http://localhost:3001/blogs", {
         method: "POST",
@@ -68,11 +68,7 @@ function Write() {
   return (
     <div className="write-container">
       <div className="editor-toolbar">
-        <img
-          src={logo}
-          alt="Logo"
-          className="logo"
-        />
+        <img src={logo} alt="Logo" className="logo" />
         <button className="publish-button" onClick={handleSubmit}>
           Publish
         </button>
@@ -80,10 +76,10 @@ function Write() {
 
       <div className="title-section">
         <div
-          type="text"
+          contentEditable={true}
           value={formData.title}
           className="title-input"
-          placeholder="Title"
+          data-placeholder="Title"
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
       </div>
