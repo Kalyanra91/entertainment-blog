@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Plus } from "lucide-react";
@@ -6,6 +7,7 @@ import "../styles/Write.css";
 import logo from "../assets/logo.png";
 
 function Write() {
+  const navigate = useNavigate();
   const [thumbnailImage, setThumbnailImage] = useState("");
   const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
@@ -71,6 +73,7 @@ function Write() {
 
       if (response.ok) {
         alert("Blog post created successfully");
+        navigate("/home");
       } else {
         alert("Failed to create blog post");
       }
