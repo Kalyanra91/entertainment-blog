@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckCircle } from
     "lucide-react";
-import "../styles/global.css";
+import "../styles/auth.css";
 
 const Toast = ({ message }) => {
   return (

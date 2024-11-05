@@ -27,7 +27,7 @@ function Landing() {
       <div className="hero">
         <div className="text-container">
             <marquee behavior="scroll" direction="left" scrollamount="10">
-                <h5> Music • Movies • TV Shows • Reviews • Gaming • Pop Culture • Books </h5>
+                <h5> Music • Movies • TV Shows • Reviews • Pop Culture • Books </h5>
             </marquee>
             <h1>Entertainment<br /> just got interesting..</h1>
             <br />
@@ -38,7 +38,7 @@ function Landing() {
             </a>
             <br /> <br />  <br />
             <marquee behavior="scroll" direction="right" scrollamount="10">
-    <h5> Celebrity News • Streaming • Festivals • Concerts • Interviews • Trends • Drama </h5>
+    <h5> Celebrity News • Streaming • Festivals • Concerts • Interviews • Drama </h5>
 </marquee>
 
         </div>

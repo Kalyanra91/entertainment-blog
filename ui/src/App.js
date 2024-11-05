@@ -5,8 +5,10 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
 import ProfilePage from "./pages/ProfilePage";
-import Write from "./pages/Write.js";
+import Write from "./pages/Write";
 import Landing from "./pages/Landing";
+import BlogComponent from "./components/BlogComponent";
+import BlogDetail from "./components/BlogDetail";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/test" element={<Test />} />
         <Route path="/write" element={<Write />} />
+        <Route path="/blog" element={<BlogComponent />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
     </Router>
   );

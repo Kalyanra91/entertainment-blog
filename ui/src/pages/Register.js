@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom/dist/index.js";
-import "../styles/global.css";
+import "../styles/auth.css";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import logo from "../assets/logo.png";
