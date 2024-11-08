@@ -6,8 +6,7 @@
 
 .blog-post {
   margin-bottom: 40px;
-  padding: 20px;
-  transition: background-color 0.2s ease;
+  padding: 24px;
   cursor: pointer;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
@@ -15,12 +14,17 @@
 
 .post-wrapper {
   display: flex;
-  gap: 24px;
+  gap: 32px;
   align-items: flex-start;
+  min-height: 200px;
 }
 
 .post-content-wrapper {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .post-meta {
@@ -29,8 +33,8 @@
 
 .author-info {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .author-image {
@@ -42,56 +46,34 @@
 
 .author-details {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.author-name-container {
-  display: flex;
   align-items: center;
-  gap: 6px;
 }
 
 .author-name {
+  font-size: 14px;
   font-weight: 500;
   color: #242424;
-}
-
-.in-text {
-  color: #6b6b6b;
-}
-
-.community-name {
-  color: #242424;
-  font-weight: 500;
-}
-
-.post-details {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #6b6b6b;
-  font-size: 0.9rem;
-}
-
-.dot {
-  font-weight: bold;
 }
 
 .post-content {
-  margin-bottom: 12px;
+  flex-grow: 1;
+  margin-bottom: 16px;
 }
 
 .post-title {
-  font-size: 1.75rem;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
   color: #242424;
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .post-subtitle {
-  font-size: 1rem;
+  font-size: 16px;
   color: #6b6b6b;
   line-height: 1.5;
   margin: 0;
@@ -101,12 +83,24 @@
   overflow: hidden;
 }
 
+.post-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #6b6b6b;
+  font-size: 14px;
+}
+
+.post-date, .post-category {
+  color: #6b6b6b;
+}
+
 .post-thumbnail {
-  flex-shrink: 0;
-  width: 200px;
-  height: 134px;
-  border-radius: 4px;
+  width: 280px;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .post-thumbnail img {
@@ -122,19 +116,20 @@
 
   .post-wrapper {
     flex-direction: column;
+    min-height: auto;
   }
 
   .post-thumbnail {
     width: 100%;
-    height: 200px;
     margin-top: 16px;
+    order: -1;
   }
 
   .post-title {
-    font-size: 1.75rem;
+    font-size: 20px;
   }
 
   .post-subtitle {
-    font-size: 1rem;
+    font-size: 14px;
   }
 }

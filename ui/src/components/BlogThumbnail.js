@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../styles/thumbnail.css";
@@ -35,12 +35,18 @@ const BlogPost = ({ blog }) => {
 
           <div className="post-content">
             <h1 className="post-title">{blog.title}</h1>
-            <p className="post-subtitle">{blog.content.slice(0, 200)}...</p>
+            <p className="post-subtitle">
+              {blog.content.length > 200
+                ? `${blog.content.slice(0, 200)}...`
+                : blog.content}
+            </p>
           </div>
           <div className="post-details">
             <span className="post-date">
               {new Date(blog.created_at).toLocaleDateString()}
             </span>
+            <span>&bull;</span>
+            <span className="post-category">{blog.category}</span>
           </div>
         </div>
 
@@ -85,20 +91,27 @@ BlogPost.propTypes = {
   }).isRequired,
 };
 
-const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
+const Blog = ({ blog }) => {
+  if (!blog) {
+    return null;
+  }
+  
+  return <BlogPost blog={blog} />;
+};
 
-    
-
-  return (
-    <div className="blog-container">
-      <main className="blog-main">
-        {blogs.map((blog) => (
-          <BlogPost key={blog._id} blog={blog} />
-        ))}
-      </main>
-    </div>
-  );
+Blog.propTypes = {
+  blog: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string,
+    content: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    author: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      avatar: PropTypes.string,
+    }).isRequired,
+    created_at: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Blog;
