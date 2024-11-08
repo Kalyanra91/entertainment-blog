@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "../styles/thumbnail.css";
 import user from "../assets/icons/user.svg";
 
-const BlogPost = ({ title, username, created_at, content, thumbnail  }) => {
+const BlogPost = ({ blog }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -70,31 +70,31 @@ const BlogPost = ({ title, username, created_at, content, thumbnail  }) => {
   );
 };
 
-Blog.propTypes = {
-  blogPosts: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
+BlogPost.propTypes = {
+  blog: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string,
+    content: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    author: PropTypes.shape({
       username: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      thumbnail: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+      avatar: PropTypes.string,
+    }).isRequired,
+    created_at: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-const Blog = ({ blogPosts }) => {
+const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+
+    
+
   return (
     <div className="blog-container">
       <main className="blog-main">
-        {blogPosts.map((post, index) => (
-          <BlogPost
-            key={index}
-            title={post.title}
-            username={post.username}
-            created_at={post.created_at}
-            content={post.content}
-            thumbnail={post.thumbnail}
-          />
+        {blogs.map((blog) => (
+          <BlogPost key={blog._id} blog={blog} />
         ))}
       </main>
     </div>
