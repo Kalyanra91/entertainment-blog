@@ -23,6 +23,9 @@ require("./Database/Db");
 // images
 app.use("/profiles", express.static("./public/images/avatar"));
 
+// blog thumbnail
+app.use("/images/blogthumbs", express.static("./public/images/blogthumbs"));
+
 // controllers
 const AuthController = require("./Controller/AuthController");
 app.use(AuthController);

@@ -88,8 +88,6 @@ BlogPost.propTypes = {
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
-    
-
   return (
     <div className="blog-container">
       <main className="blog-main">

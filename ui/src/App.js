@@ -21,8 +21,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/test" element={<Test />} />
         <Route path="/write" element={<Write />} />
-        <Route path="/blog" element={<BlogComponent />} />
-        <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogComponent />} />
+        {/* <Route path="/blog/:id" element={<Blog />} /> */}
         <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
