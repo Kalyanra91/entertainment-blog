@@ -114,7 +114,7 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="login-container">
-      <img src={logo} alt="Logo" className="logo" />
+      <img src={logo} alt="Logo" className="logoPic" />
       {showToast && (
         <Toast message="User created successfully" onClose={handleToastClose} />
       )}
