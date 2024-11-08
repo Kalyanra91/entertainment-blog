@@ -62,7 +62,7 @@ const BlogPost = ({ blog }) => {
           }}
         >
           <img
-            src={blog.thumbnail || "/images/default.png"}
+            src={"http://localhost:3001" + blog.thumbnail}
             alt={blog.title}
             style={{
               width: "100%",

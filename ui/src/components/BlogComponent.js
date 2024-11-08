@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { User } from "lucide-react";
 import Header from "./HeaderComponent";
 import "../styles/blog.css";
 
-const BlogComponent = ({ match }) => {
+const BlogComponent = () => {
   const [blog, setBlog] = useState(null);
-  const _id = "672314f4f0d6433cbea56f0b"; // hard-coded ID for testing
-
+  // Extracting blog id from URL
+  const _id = window.location.pathname.split("/")[2];
   useEffect(() => {
     // Fetching blog post
     fetch(`http://localhost:3001/blog/${_id}`, { method: "GET" })
