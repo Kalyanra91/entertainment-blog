@@ -8,7 +8,8 @@ import ProfilePage from "./pages/ProfilePage";
 import Write from "./pages/Write";
 import Landing from "./pages/Landing";
 import BlogComponent from "./components/BlogComponent";
-import BlogDetail from "./components/BlogDetail";
+import Blog from "./components/BlogThumbnail";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="/test" element={<Test />} />
         <Route path="/write" element={<Write />} />
         <Route path="/blog" element={<BlogComponent />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );

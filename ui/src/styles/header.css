@@ -18,7 +18,8 @@
 }
 
 .header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--background-color);
   width: 100%;
@@ -45,8 +46,7 @@
 }
 
 .logo {
-  position: fixed;
-  top: 2%;
+  top: 15%;
   width: 150px;
 }
 
@@ -101,9 +101,9 @@
 }
 
 .dropdown-menu {
-  position: fixed;
-  top: 80%;
-  left: 21%;
+  position: absolute;
+  top: 100%;
+  left: 0;
   margin-top: 0.4rem;
   background-color: var(--background-color);
   border-top: 1px solid var(--border-color);
@@ -118,8 +118,9 @@
 }
 
 .profile-dropdown {
-  top: 11.6%;
-  left: 87%;
+  top: 100%;
+  left: auto;
+  right: 0;
 }
 
 .dropdown-item {
@@ -277,7 +278,13 @@
   color: var(--primary-color);
   transition: 0.3s;
 }
+
 @media screen and (max-width: 768px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
   .hamburger-menu {
     display: block;
     position: absolute;
