@@ -55,15 +55,7 @@ function Home() {
     <>
       <Header />
       <div className="blog-container">
-        {exampleBlogPosts
-          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-          .map(
-            (
-              blog
-            ) => (
-              <Blog key={blog._id} blog={blog} />
-            )
-          )}
+        <Blog blogs={exampleBlogPosts} />
       </div>
     </>
   );

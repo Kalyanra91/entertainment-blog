@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../styles/thumbnail.css";
@@ -92,11 +91,7 @@ BlogPost.propTypes = {
   }).isRequired,
 };
 
-const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
-
-    
-
+const Blog = ({ blogs }) => {
   return (
     <div className="blog-container">
       <main className="blog-main">
@@ -106,6 +101,10 @@ const Blog = () => {
       </main>
     </div>
   );
+};
+
+Blog.propTypes = {
+  blogs: PropTypes.arrayOf(BlogPost.propTypes.blog).isRequired,
 };
 
 export default Blog;
