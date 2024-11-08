@@ -34,6 +34,20 @@ router.get("/blogs", async (req, res) => {
   }
 });
 
+// get blog by id
+router.get("/blog/:id", async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    res.status(200).send(blog);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e });
+  }
+});
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/images/blogthumbs");

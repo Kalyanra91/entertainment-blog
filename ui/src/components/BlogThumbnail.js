@@ -91,27 +91,20 @@ BlogPost.propTypes = {
   }).isRequired,
 };
 
-const Blog = ({ blog }) => {
-  if (!blog) {
-    return null;
-  }
-  
-  return <BlogPost blog={blog} />;
-};
+const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
 
-Blog.propTypes = {
-  blog: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string,
-    content: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    author: PropTypes.shape({
-      username: PropTypes.string.isRequired,
-      avatar: PropTypes.string,
-    }).isRequired,
-    created_at: PropTypes.string.isRequired,
-  }).isRequired,
+    
+
+  return (
+    <div className="blog-container">
+      <main className="blog-main">
+        {blogs.map((blog) => (
+          <BlogPost key={blog._id} blog={blog} />
+        ))}
+      </main>
+    </div>
+  );
 };
 
 export default Blog;

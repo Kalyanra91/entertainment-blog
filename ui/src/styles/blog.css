@@ -55,15 +55,11 @@
   padding: 10px 0 10px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   gap: 12px;
   margin-bottom: 32px;
   width: 100%;
-}
-
-.blog-main {
-  display: flex;
-  gap: 10px;
 }
 
 .author-image {
@@ -77,10 +73,17 @@
   flex-shrink: 0;
 }
 
+.author-info img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .author-info {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .author-name {
