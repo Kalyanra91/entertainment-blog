@@ -25,6 +25,7 @@ function ProfilePage() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [profile, setProfile] = useState({
+    _id: "",
     username: "",
     about: "",
     email: "",

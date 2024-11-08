@@ -34,6 +34,18 @@ router.get("/blogs", async (req, res) => {
   }
 });
 
+// get blogs by user id
+router.get("/blogs/:id", async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    const blogs = await Blog.find({ "author.username": user.username }).sort({ created_at: -1 });
+    res.status(200).send(blogs);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e });
+  }
+});
+
 // get blog by id
 router.get("/blog/:id", async (req, res) => {
   try {

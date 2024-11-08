@@ -28,7 +28,7 @@ router.get("/profile", verifyToken, async (req, res) => {
   try {
     const id = req.user?.id
     const user = await User.findOne({ _id: id }).select(
-      "-password -__v -_id -age"
+      "-password -__v -age"
     );
     if (user) {
       return res.status(200).send(user);
