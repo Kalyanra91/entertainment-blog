@@ -84,13 +84,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.author-name {
-  font-weight: 500;
-  color: #111827;
-  font-size: 16px;
-  line-height: 1.4;
+  gap: 8px;
 }
 
 .post-date {

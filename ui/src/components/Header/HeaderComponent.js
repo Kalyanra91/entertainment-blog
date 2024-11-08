@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomInput from "../components/CustomInput";
-import logo from "../assets/logo.png";
-import "../styles/header.css";
+import CustomInput from "../CustomInput";
+import logo from "../../assets/logo.png";
+import "./header.css";
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");

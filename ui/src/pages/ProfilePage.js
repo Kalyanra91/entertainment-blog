@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProfileHeader from "../components/ProfileHeader";
-import ProfileContent from "../components/ProfileContent";
-import EditModal from "../components/EditModal";
-import "../styles/profile.css";
-import Header from "../components/HeaderComponent.js";
+import ProfileHeader from "../components/Profile/ProfileHeader.js";
+import ProfileContent from "../components/Profile/ProfileContent.js";
+import EditModal from "../components/Profile/EditModal.js";
+import "../components/Profile/profile.css";
+import Header from "../components/Header/HeaderComponent.js";
 
 function ProfilePage() {
 

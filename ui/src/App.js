@@ -7,8 +7,7 @@ import Test from "./pages/Test";
 import ProfilePage from "./pages/ProfilePage";
 import Write from "./pages/Write";
 import Landing from "./pages/Landing";
-import BlogComponent from "./components/BlogComponent";
-import Blog from "./components/BlogThumbnail";
+import BlogComponent from "./components/BlogComponent/BlogComponent";
 import Home from "./pages/Home";
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
         <Route path="/test" element={<Test />} />
         <Route path="/write" element={<Write />} />
         <Route path="/blog/:id" element={<BlogComponent />} />
-        {/* <Route path="/blog/:id" element={<Blog />} /> */}
         <Route path="/home" element={<Home />} />
       </Routes>
     </Router>

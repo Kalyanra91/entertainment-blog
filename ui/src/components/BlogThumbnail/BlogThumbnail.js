@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import "../styles/thumbnail.css";
-import user from "../assets/icons/user.svg";
+import "./thumbnail.css";
+import user from "../../assets/icons/user.svg";
 
 const BlogPost = ({ blog }) => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const BlogPost = ({ blog }) => {
       >
         <div className="post-content-wrapper" style={{ flex: 1 }}>
           <div className="post-meta">
-            <div className="author-info">
+            <div className="author">
               <img
                 src={blog.author.avatar || user}
                 alt={blog.author.username}
@@ -32,15 +32,11 @@ const BlogPost = ({ blog }) => {
               </div>
             </div>
           </div>
-
-          <div className="post-content">
-            <h1 className="post-title">{blog.title}</h1>
-            <p className="post-subtitle">
-              {blog.content.length > 200
-                ? `${blog.content.slice(0, 200)}...`
-                : blog.content}
-            </p>
-          </div>
+          <h1 className="post-title">{blog.title}</h1>
+          <div
+            className="post-content"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
           <div className="post-details">
             <span className="post-date">
               {new Date(blog.created_at).toLocaleDateString()}
