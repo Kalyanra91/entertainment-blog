@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Blog from "./BlogThumbnail";
+import Blog from "../BlogThumbnail/BlogThumbnail";
 
 function ProfileContent() {
   const [profile, setProfile] = useState(null);
